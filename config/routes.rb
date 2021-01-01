@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   post '/accounts', to: 'accounts#create'
   patch '/accounts/:id', to: 'accounts#update'
+
+  get '/referrals/:code', to: 'referrals#list_referrals'
 end
