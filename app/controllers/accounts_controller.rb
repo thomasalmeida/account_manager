@@ -10,7 +10,12 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
    
     if @account.save
-      return complete_account if is_complete?
+      if is_complete?
+        response = complete_account
+        add_referral unless @account.referred_by.nil?
+
+        return response
+      end
 
       render json: @account, status: :created
     else
@@ -29,7 +34,12 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      return complete_account if is_complete?
+      if is_complete?
+        response = complete_account
+        add_referral unless @account.referred_by.nil?
+
+        return response
+      end
 
       render json: @account
     else
@@ -85,4 +95,7 @@ class AccountsController < ApplicationController
     }
   end
 
+  def add_referral
+    ReferralsController.insert_referral(@account.referred_by, @account.id, @account.name)
+  end
 end
