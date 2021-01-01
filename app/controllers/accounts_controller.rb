@@ -49,7 +49,7 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.permit(:name, :email, :cpf, :birth_date, :gender, :city, :state, :country)
+    params.permit(:name, :email, :cpf, :birth_date, :gender, :city, :state, :country, :referred_by)
   end
 
   def set_account
