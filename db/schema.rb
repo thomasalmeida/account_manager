@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 2020_12_31_141847) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "referrals", primary_key: "referral_code", id: :string, force: :cascade do |t|
+    t.json "accounts_referred", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["referral_code"], name: "index_referrals_on_referral_code"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest", null: false
