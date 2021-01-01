@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_141847) do
+ActiveRecord::Schema.define(version: 2021_01_01_221342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2020_12_31_141847) do
     t.string "status", default: "pending"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "referred_by"
+  end
+
+  create_table "referrals", primary_key: "referral_code", id: :string, force: :cascade do |t|
+    t.json "accounts_referred", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["referral_code"], name: "index_referrals_on_referral_code"
   end
 
   create_table "users", force: :cascade do |t|
