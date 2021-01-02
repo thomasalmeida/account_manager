@@ -13,14 +13,14 @@ development:
 test:
   <<: *default
   database: account_manager_test
-  host: <%= Rails.application.credentials.dig(:development, :db_host) %>
-  username: <%= Rails.application.credentials.dig(:development, :db_username) %>
-  password: <%= Rails.application.credentials.dig(:development, :db_pass) %>
+  host: <%= Rails.application.credentials.dig(:test, :db_host) %>
+  username: <%= Rails.application.credentials.dig(:test, :db_username) %>
+  password: <%= Rails.application.credentials.dig(:test, :db_password) %>
 
 production:
   <<: *default
   database: account_manager_production
-  host: <%= Rails.application.credentials.dig(:development, :db_host) %>
-  username: <%= Rails.application.credentials.dig(:development, :db_username) %>
-  password: <%= Rails.application.credentials.dig(:development, :db_pass) %>
+  host: <%= Rails.application.credentials.dig(:production, :db_host) %>
+  username: <%= Rails.application.credentials.dig(:production, :db_username) %>
+  password: <%= Rails.application.credentials.dig(:production, :db_password) %>
 

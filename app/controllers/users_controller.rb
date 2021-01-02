@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       user_response = @user.attributes
       user_response.delete('password_digest')
 
-      render json: {user: user_response, token: token}
+      render json: {user: user_response, token: token}, status: :created
     else
       render json: {error: "Invalid username or password"}
     end

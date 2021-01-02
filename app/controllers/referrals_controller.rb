@@ -4,6 +4,8 @@ class ReferralsController < ApplicationController
   def list_referrals
     list = Referral.find_by(referral_code: params[:code])
 
+    return render json: {message: 'not found'}, status: :not_found if list.nil?
+
     render json: list.attributes.deep_symbolize_keys.slice(:referral_code, :accounts_referred)
   end
 
