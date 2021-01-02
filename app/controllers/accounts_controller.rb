@@ -74,7 +74,7 @@ class AccountsController < ApplicationController
     @account
       .attributes
       .deep_symbolize_keys
-      .slice(:name, :email, :cpf, :birh_date, :gender, :city, :state, :country)
+      .slice(:name, :email, :cpf, :birth_date, :gender, :city, :state, :country)
       .values
       .each{ |attribute| return false if attribute.nil?}
 
