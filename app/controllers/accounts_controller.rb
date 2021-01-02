@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    if @account.update(account_params)
+    if @account.update(update_account_params)
       if is_complete?
         response = complete_account
         add_referral unless @account.referred_by.nil?
@@ -60,6 +60,10 @@ class AccountsController < ApplicationController
 
   def account_params
     params.permit(:name, :email, :cpf, :birth_date, :gender, :city, :state, :country, :referred_by)
+  end
+
+  def update_account_params
+    params.permit(:name, :email, :birth_date, :gender, :city, :state, :country, :referred_by)
   end
 
   def set_account
